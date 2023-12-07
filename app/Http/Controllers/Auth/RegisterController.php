@@ -1,15 +1,13 @@
 <?php
 
-namespace Mass\User\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Mass\User\Models\User;
-use Mass\User\Rules\ValidMobileRule;
-use Mass\User\Rules\ValidPasswordRule;
 
 class RegisterController extends Controller
 {
@@ -51,12 +49,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        //todo:back this validation password
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'mobile' => ['required', 'string', 'min:9', 'max:14', 'unique:users',new ValidMobileRule()],
-            'password' => ['required', 'string', 'min:8', 'confirmed',/*new ValidPasswordRule()*/],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -64,20 +60,14 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \Mass\User\Models\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'mobile'=>$data['mobile'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    public function showRegistrationForm()
-    {
-        return view('User::Front.register');
     }
 }
