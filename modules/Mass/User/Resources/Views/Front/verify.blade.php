@@ -19,7 +19,6 @@
                 @csrf
                 <button type="submit"
                         class="btn btn-link p-0 m-0 align-baseline">ارسال مجدد لینک </button>
-                .
             </form>
         </div>
         <div class="form-footer">

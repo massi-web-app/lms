@@ -51,8 +51,25 @@ Route::group(['middleware'=>['web']],function (){
         'showResetForm'
     ])->name('password.reset');
 
+    Route::post('password/rest',[
+        \Mass\User\Http\Controllers\Auth\ForgotPasswordController::class,
+        'sendResetLinkEmail'
+    ])->name('password.email');
+
+    Route::post('password/rest',[
+        \Mass\User\Http\Controllers\Auth\ResetPasswordController::class,
+        'reset'
+    ])->name('password.update');
+
+
+    Route::post('/password/email',[
+        \Mass\User\Http\Controllers\Auth\ForgotPasswordController::class,
+        'sendResetLinkEmail'
+    ])->name('password.email');
+
 
     //endregion
+
 
 
     //region route verification
@@ -75,6 +92,8 @@ Route::group(['middleware'=>['web']],function (){
     ])->name('verification.verify');
 
     //endregion verification
+
+
 
 
     //region logout

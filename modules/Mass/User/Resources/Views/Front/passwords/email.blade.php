@@ -1,7 +1,6 @@
 @extends('User::Front.master')
 
 @section('content')
-
     <form action="{{ route('password.email') }}" class="form" method="post">
         @csrf
         <a class="account-logo" href="/">
