@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Mass\User\Tests\Unit;
 
 use Illuminate\Support\Facades\Validator;
 use Mass\User\Rules\ValidMobileRule;

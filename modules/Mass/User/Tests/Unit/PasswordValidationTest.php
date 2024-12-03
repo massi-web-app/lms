@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Mass\User\Tests\Unit;
 
 use Mass\User\Rules\ValidPasswordRule;
 use PHPUnit\Framework\TestCase;
